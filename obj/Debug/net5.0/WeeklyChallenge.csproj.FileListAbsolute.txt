@@ -1,0 +1,16 @@
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.exe
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.deps.json
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.runtimeconfig.json
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.runtimeconfig.dev.json
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.dll
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\ref\WeeklyChallenge.dll
+D:\Programs\WeeklyChallenge\bin\Debug\net5.0\WeeklyChallenge.pdb
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.csproj.AssemblyReference.cache
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.AssemblyInfoInputs.cache
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.AssemblyInfo.cs
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.csproj.CoreCompileInputs.cache
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.dll
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\ref\WeeklyChallenge.dll
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.pdb
+D:\Programs\WeeklyChallenge\obj\Debug\net5.0\WeeklyChallenge.genruntimeconfig.cache
