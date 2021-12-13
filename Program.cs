@@ -11,10 +11,12 @@ namespace WeeklyChallenge
             while (!exit)
             {
                 Console.WriteLine();
-                List<string> options = new List<string>() { "q", "1", "2", "3" };
+                List<string> options = new List<string>() { "q", "1", "2", "3", "4", "5" };
                 Console.WriteLine("1: Rock Paper Scissors");
                 Console.WriteLine("2: OverTime");
                 Console.WriteLine("3: UniqueFract");
+                Console.WriteLine("4: AlmostPalindrome");
+                Console.WriteLine("5: RecursionStaircase");
                 Console.WriteLine("q: Exit");
                 
                 Console.Write("Select a choice: ");
@@ -39,6 +41,12 @@ namespace WeeklyChallenge
                         break;
                     case "3":
                         UniqueFract();
+                        break;
+                    case "4":
+                        AlmostPalindrome();
+                        break;
+                    case "5":
+                        RecursionStaircase();
                         break;
                     default:
                         Console.WriteLine("You're not meant to get here.");
@@ -76,7 +84,6 @@ namespace WeeklyChallenge
 
             Console.WriteLine(RockPaperScissorsLogic(c1, c2));
         }
-
         private static string RockPaperScissorsLogic(string first, string second)
         {
             string P1 = "Player 1 wins";
@@ -201,6 +208,101 @@ namespace WeeklyChallenge
                 }
             }
             Console.WriteLine($"Total of all unique fractions whose numerator and denominator are less than 1: {total}");
+        }
+
+        private static void AlmostPalindrome()
+        {
+            Console.Write("What is the string you'd like to check? ");
+            string palindoom = Console.ReadLine();
+
+            bool doomed = CheckPalindrome(palindoom);
+
+            if (doomed)
+            {
+                Console.WriteLine("This string is or is almost a palindrome!");
+            }
+            else
+            {
+                Console.WriteLine("This string is not nearly a palindrome.");
+            }
+        }
+        private static bool CheckPalindrome(string palindoom)
+        {
+            int check = 0;
+            for (int i = 0; i < palindoom.Length; i++)
+            {
+                int j = palindoom.Length - i - 1;
+
+                if (j <= i)
+                {
+                    break;
+                }
+
+                if (palindoom[i] != palindoom[j])
+                {
+                    check++;
+                }
+            }
+
+            if (check > 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private static void RecursionStaircase()
+        {
+            Console.Write("How many stairs are there? ");
+            int n = 0;
+            int ways = 0;
+            bool contain = true;
+            do
+            {
+                string input = Console.ReadLine();
+
+                try
+                {
+                    n = Int32.Parse(input);
+                    contain = false;
+                }
+                catch
+                {
+                    Console.WriteLine("That is not a number. Try again.");
+                }
+
+                if (n < 0)
+                {
+                    Console.WriteLine("Please input a positive number.");
+                    contain = true;
+                }
+            } while (contain);
+
+            ways = StaircaseCounter(n);
+
+            Console.WriteLine($"There are {ways} way(s) to climb these steps.");
+        }
+        private static int StaircaseCounter(int n)
+        {
+            int x = 1;
+            int y = 1;
+
+            if (n < 2)
+            {
+                return 1;
+            }
+            
+            for (int i = 1; i < n; i++)
+            {
+                int z = x + y;
+                x = y;
+                y = z;
+            }
+
+            return y;
         }
     }
 }
