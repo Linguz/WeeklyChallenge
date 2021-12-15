@@ -11,12 +11,13 @@ namespace WeeklyChallenge
             while (!exit)
             {
                 Console.WriteLine();
-                List<string> options = new List<string>() { "q", "1", "2", "3", "4", "5" };
+                List<string> options = new List<string>() { "q", "1", "2", "3", "4", "5", "6" };
                 Console.WriteLine("1: Rock Paper Scissors");
                 Console.WriteLine("2: OverTime");
                 Console.WriteLine("3: UniqueFract");
                 Console.WriteLine("4: AlmostPalindrome");
                 Console.WriteLine("5: RecursionStaircase");
+                Console.WriteLine("6: MaxThrowDistance");
                 Console.WriteLine("q: Exit");
                 
                 Console.Write("Select a choice: ");
@@ -47,6 +48,9 @@ namespace WeeklyChallenge
                         break;
                     case "5":
                         RecursionStaircase();
+                        break;
+                    case "6":
+                        MaxThrowDistance();
                         break;
                     default:
                         Console.WriteLine("You're not meant to get here.");
@@ -271,12 +275,12 @@ namespace WeeklyChallenge
                 }
                 catch
                 {
-                    Console.WriteLine("That is not a number. Try again.");
+                    Console.WriteLine("That is not an integer. Try again.");
                 }
 
                 if (n < 0)
                 {
-                    Console.WriteLine("Please input a positive number.");
+                    Console.WriteLine("Please input a positive integer.");
                     contain = true;
                 }
             } while (contain);
@@ -303,6 +307,108 @@ namespace WeeklyChallenge
             }
 
             return y;
+        }
+
+        private static void MaxThrowDistance()
+        {
+            Console.WriteLine("How high are you in meters?");
+            int h = 0;
+            bool check = true;
+            do
+            {
+                string input = Console.ReadLine();
+
+                try
+                {
+                    h = Int32.Parse(input);
+                    check = false;
+                }
+                catch
+                {
+                    Console.WriteLine("That is not an integer. Try again.");
+                }
+
+                if (h < 0)
+                {
+                    Console.WriteLine("Please input a positive integer.");
+                    check = true;
+                }
+            } while (check);
+
+            Console.WriteLine("How hard will you throw the ball in meters per second?");
+            int v = 0;
+            check = true;
+            do
+            {
+                string input = Console.ReadLine();
+
+                try
+                {
+                    v = Int32.Parse(input);
+                    check = false;
+                }
+                catch
+                {
+                    Console.WriteLine("That is not an integer. Try again.");
+                }
+
+                if (v < 0)
+                {
+                    Console.WriteLine("Please input a positive integer.");
+                    check = true;
+                }
+            } while (check);
+
+            double maxDistance = 0;
+            double maxAngle = 90; // straight up
+            double highDistance = DistanceThrown(h, v, maxAngle);
+            double minAngle = 0; // straight right
+            double lowDistance = DistanceThrown(h, v, minAngle);
+
+            check = true;
+            double[] modifier = new double[] {5, 1, 0.1};
+            int i = 0;
+            while(check) // get the best angle within 10 degrees
+            {
+                if (minAngle != maxAngle)
+                {
+                    if (highDistance < lowDistance)
+                    {
+                        maxAngle = Math.Round(maxAngle - modifier[i],1);
+                        highDistance = DistanceThrown(h, v, maxAngle);
+                    }
+                    else
+                    {
+                        minAngle = Math.Round(minAngle + modifier[i],1);
+                        lowDistance = DistanceThrown(h, v, minAngle);
+                    }
+                }
+                else if (i != 2)
+                {
+                    minAngle -= modifier[i];
+                    maxAngle += modifier[i];
+                    i++;
+                }
+                else
+                {
+                    check = false;
+                    maxDistance = Math.Max(highDistance, lowDistance);
+                }
+            }
+
+            Console.WriteLine($"The maximum distance is {maxDistance} meters at {minAngle} degrees.");
+            Console.WriteLine(check);
+        }
+
+        private static double DistanceThrown(int h, int v, double angle)
+        {
+            double xVel = Math.Round(Math.Cos((Math.PI/180)*angle),5) * v;
+            double yVel = Math.Round(Math.Sin((Math.PI/180)*angle),5) * v;
+            double g = 9.8;
+
+            double time = (yVel + Math.Sqrt( yVel*yVel + 2*g*h)) / g;
+
+            return Math.Round(xVel * time,2);
         }
     }
 }
